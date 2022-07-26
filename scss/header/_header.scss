@@ -1,0 +1,133 @@
+@use '../assets/assets' as *;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0 0 40px;
+    position: relative;
+    z-index: 10;
+    &__picture{
+        max-width: 40px;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+    }
+}
+
+.nav {
+    background-color: rgba($color: #fff, $alpha: .1);
+    backdrop-filter: blur(5px);
+    padding: 24px clamp(70px, 8vw, 120px);
+    font-family: $barlow-condensed;
+    font-weight: $regular;
+    display: grid;
+    place-items: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    position: relative;
+
+
+    &.nav--active{
+        width: clamp(220px, 50%, 450px);
+        height: 100vh;
+        top: 0;
+        right: 0;
+        position: fixed;
+        place-items: start;
+        align-content: center;
+        padding: 0 12vw;
+        backdrop-filter: blur(15px);
+        transform: translateX(100%);
+        transition: transform .4s ease;
+
+    }
+    &.nav--shown{
+        transform: translateX(0%);
+    }
+
+    &.nav--active &__line{
+        display: none;
+    }
+
+    &.nav--active &__list{
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &.nav--active &__item::before{
+        top: calc(100% + 6px);
+    }
+
+    &.nav--active &__picture{
+        display: block;
+        position: absolute;
+        top: 36px;
+        right: 40px;
+    }
+    
+    &__line {
+        --width: clamp(0px, 50vw, 750px);
+        position: absolute;
+        border: 0;
+        height: 1px;
+        width: var(--width);
+        left: calc((var(--width) - var(--width) - var(--width)) + 5%);
+        top: 50%;
+        background-image: linear-gradient(to bottom, transparent, $white);
+    }
+
+
+    &__list {
+        display: flex;
+        gap: 40px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            top: calc(100% + 24px - 2px);
+            background-color: $white;
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+        
+        &:hover::before{
+            opacity: 1;
+        }
+    }
+
+    &__item.nav__item--active {
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    &__number {
+        font-weight: $bold;
+        font-size: 16px;
+    }
+
+    &__picture{
+        display: none;
+    }
+
+}
+
+.menu{
+    display: none;
+    padding: 0 40px 0 0;
+    &--active{
+        display: block;
+    }
+}

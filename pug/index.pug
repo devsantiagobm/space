@@ -1,0 +1,102 @@
+include bg.pug
+include nav.pug
+include crew.pug
+include tech.pug
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Space
+        link(rel='preconnect', href='https://fonts. googleapis.com')
+        link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin='')
+        link(href='https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Barlow:wght@400;700&family=Bellefair&display=swap', rel='stylesheet')
+        
+        link(rel="stylesheet" href="src/style.css") 
+
+        script(src="src/script.js" defer type="module") 
+    body
+    .modal 
+        span.modal__loader
+    .bg 
+        each item in bg 
+            img(src=`./assets/${item}/background-${item}-desktop.jpg`, alt="background" data-bg= item class= item === "home" ? "bg__item--active" : "" ).bg__item
+    header.header 
+        picture.header__picture
+            img(src="assets/shared/logo.svg", alt="log" ).header__image
+        nav.nav
+            hr.nav__line
+            ul.nav__list 
+                each item in itemsNav 
+                    li.nav__item(data-trans= item.trans class= item.number == "00" ? "nav__item--active" : "")
+                        span.nav__number= item.number
+                        span.nav__text= item.text
+            picture.nav__picture 
+                img(src="./assets/shared/icon-close.svg", alt="logo close").nav__img
+        picture.menu 
+                img(src="./assets/shared/icon-hamburger.svg", alt="menu logo").menu__img
+    main.main 
+        .main__content 
+            .home
+                .home__info 
+                    span.home__subtitle so, you want to travel to 
+                    h1.home__title space
+                    p.home__text Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!
+                button.home__explore explore
+            .destination
+                .destination__frame 
+                    span.destination__sign 
+                        span.destination__number 01
+                        span.destination__name pick your destination
+                    picture.destination__picture 
+                        img.destination__image(src="assets/destination/image-moon.png", alt="" )
+                .destination__data 
+                    ul.destination__list 
+                        each item in ["Moon", "Mars", "Europa", "Titan"]
+                            li.destination__item(class= item == "Moon" ? "destination__item--active" : "")= item
+                    h1.destination__title moon
+                    p.destination__text See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.
+                    hr.destination__line
+                    .destination__info 
+                        div
+                            .destination__measure avg. distance 
+                            .destination__note.destination__distance 384,400 KM
+                        div
+                            .destination__measure est. travel time
+                            .destination__note.destination__time 3 DAYS
+                
+            .crew
+                .crew__data 
+                    .crew__sign 
+                        span.crew__number 02
+                        span.crew__title meet your crew
+                    .crew__info 
+                        .crew__profession Commander
+                        .crew__name Douglas Hurley
+                        .crew__text Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2. 
+                    ul.crew__list
+                        each item in crew
+                            li.crew__item(class= item === "Commander" ? "crew__item--active" : "" data-role= item)
+
+                picture.crew__picture
+                    img(src="./assets/crew/image-douglas-hurley.png", alt="" ).crew__image
+            .tech
+                .tech__data
+                    .tech__sign 
+                        span.tech__number 03
+                        span.tech__name space launch 101
+                    .tech__main 
+                        ul.tech__list 
+                            each item in tech
+                                li.tech__item(class= item.name === "Launch vehicle" ? "tech__item--active" : "" data-name= item.name)= item.number
+                        .tech__info
+                            span.tech__subtitle the terminology 
+                            h2.tech__title launch vehicle 
+                            p.tech__text A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!
+                    .tech__residue 
+                
+                picture.tech__picture 
+                    img(src="assets/technology/image-launch-vehicle-portrait.jpg", alt="lasod" ).tech__image
+    

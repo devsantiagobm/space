@@ -1,0 +1,18 @@
+@use '../home/home' as *;
+@use '../destiny/destiny' as *;
+@use '../crew/crew' as *;
+@use '../technology/technology' as *;
+
+@media screen and (max-width: 992px){
+    @include home-tablet();
+    @include destiny-tablet();
+    @include crew-tablet();
+    @include tech-tablet();
+}
+
+@media screen and (max-width: 572px){
+    @include home-mobile();
+    @include destiny-mobile();
+    @include crew-mobile();
+    @include tech-mobile();
+}

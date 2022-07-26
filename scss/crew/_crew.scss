@@ -1,0 +1,146 @@
+@use '../assets/assets' as *;
+@use '../mixins/mixins' as *;
+
+.crew{
+    @include grillaContenido();
+    --padding: 80px clamp(180px, 15vw, 240px) 0px;
+    align-content: flex-end;
+
+    &--active{
+        animation: destinoAnimacion .8s ease-in-out both;
+        @keyframes destinoAnimacion{
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+    }
+
+    &__data{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 40px 0;
+    }
+    
+    &__sign{
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-family: $barlow-condensed;
+        font-size: 24px;
+        word-spacing: 3px;
+        margin: 0 0 40px;
+    }
+
+    &__number{
+        color: $gray;
+        font-weight: $bold;
+        letter-spacing: 1px;
+    }   
+
+    &__title{
+        text-transform: uppercase;
+        letter-spacing: 5px;
+    }
+
+    &__profession,
+    &__name{
+        font-family: $bellefair;
+        color: $gray-soft;
+        text-transform: uppercase;
+        font-size: 32px;
+    }
+
+    &__name{
+        font-size: 56px;
+        color: $white;
+        margin: 16px 0 32px;
+    }
+
+    &__text{
+        color: $gray-soft;
+        font-size: 16px;
+        line-height: 28px;
+        max-width: 445px;
+        margin: 0 0 40px;
+    }
+
+    &__list{
+        display: flex;
+        gap: 32px;
+    }
+
+
+    &__item{
+        width: 20px;
+        height: auto;
+        aspect-ratio: 1;
+        background-color: rgba($color: $white, $alpha: 0.1);
+        backdrop-filter: blur(5px);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color .4s ease ;
+        &.crew__item--active,
+        &:hover{
+            background-color: $white;
+        }
+    }
+
+    &__image{
+        max-height: 577px;
+        max-width: 490px;
+    }
+}
+
+@mixin crew-tablet(){
+    .crew{
+        gap: 24px;
+        --padding: 0 clamp(28px, 12vw, 100px);
+
+        &__sign{
+            justify-content: center;
+        }
+
+        &__title{
+            font-size: 20px;
+        }
+
+        &__profession{
+            text-align: center;
+            font-size: 20px;
+        }
+        &__name{
+            text-align: center;
+            font-size: 40px;
+        }
+
+        &__list{
+            justify-content: center;
+        }
+
+        &__text{
+            max-width:100%;
+        }
+
+
+    }
+}
+
+@mixin crew-mobile(){
+    .crew{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        margin: -40vh 0 0;
+        &__picture{
+            display: grid;
+            place-items: center;
+        }
+
+        &__image{
+            width: 90%;
+        }
+    }
+}

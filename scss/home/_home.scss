@@ -1,0 +1,91 @@
+@use '../assets/assets' as *;
+@use '../mixins/mixins' as *;
+
+.home {
+    @include grillaContenido();
+
+    &__subtitle {
+        font-family: $barlow-condensed;
+        font-size: 28px;
+        text-transform: uppercase;
+        color: $gray-soft;
+    }
+
+    &__title {
+        @include title(); 
+    }
+
+    &__text {
+        color: $gray-soft;
+        font-size: 16px;
+        line-height: 28px;
+        max-width: 445px;
+    }
+
+    &__explore {
+        background-color: $white;
+        padding: 80px;
+        aspect-ratio: 1;
+        color: $dark;
+        font-family: $bellefair;
+        border-radius: 50%;
+        text-transform: uppercase;
+        display: grid;
+        place-items: center;
+        font-size: 32px;
+        box-shadow: transparent 0 0 0 16px;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+            --size: 130%;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: -1;
+            width: var(--size);
+            height: var(--size);
+            background-color: rgba($color: #fff, $alpha: .1);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity .4s ease;
+        }
+
+        &:hover::before{
+            opacity: 1;
+        }
+    }
+
+}
+
+@mixin home-tablet(){
+    .home{
+        gap: 0px;
+        --padding: 0 clamp(28px, 10vw, 100px);
+
+        &__explore{
+            margin: -50vh 0 0;
+        }
+
+        &__subtitle{
+            font-size: clamp(18px, 5vw, 28px);
+        }
+
+        &__title{
+            font-size: clamp(100px, 20vw, 150px);
+        }
+
+        &__text{
+            max-width: 100%;
+        }
+    }
+}
+
+@mixin home-mobile(){
+    .home{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
